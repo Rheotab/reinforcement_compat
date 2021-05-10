@@ -8,11 +8,11 @@ class ConstraintQuadratic:
     def __init__(self, batch_size=128, num_dims=3, ptype='convex',
                  random=0.05, dtype=tf.float32):
         self.ptype = ptype
-        self.w = tf.get_variable('w', shape=[batch_size, num_dims, num_dims],
+        self.w = tf.compat.v1.get_variable('w', shape=[batch_size, num_dims, num_dims],
             dtype=dtype, initializer=tf.random_normal_initializer(),
             trainable=False)
 
-        self.a = tf.get_variable('y', shape=[batch_size, num_dims],
+        self.a = tf.compat.v1.get_variable('y', shape=[batch_size, num_dims],
             dtype=dtype, initializer=tf.random_uniform_initializer(minval=0.01, maxval=0.99),
             trainable=False)
 
@@ -57,20 +57,20 @@ class GMM:
         self.batch_size = batch_size
         self.dtype = dtype
         with tf.variable_scope('func_gmm'):
-            self.m = [tf.get_variable('mu_{}'.format(i), shape=[batch_size, num_dims],
+            self.m = [tf.compat.v1.get_variable('mu_{}'.format(i), shape=[batch_size, num_dims],
                 dtype=dtype,
                 initializer=tf.random_uniform_initializer(minval=0.01, maxval=0.99),
                 trainable=False)
                       for i in range(ncoef)]
 
-            self.cov = [tf.get_variable('cov_{}'.format(i), shape=[batch_size, num_dims],
+            self.cov = [tf.compat.v1.get_variable('cov_{}'.format(i), shape=[batch_size, num_dims],
                 dtype=dtype,
-                initializer=tf.truncated_normal_initializer(
+                initializer=tf.compat.v1.truncated_normal_initializer(
                     mean=cov, stddev=cov/5),
                 trainable=False)
                       for i in range(ncoef)]
 
-            self.coef = tf.get_variable('coef', shape=[ncoef, 1], dtype=dtype,
+            self.coef = tf.compat.v1.get_variable('coef', shape=[ncoef, 1], dtype=dtype,
                 initializer=tf.random_normal_initializer(stddev=0.2),
                 trainable=False)
 
@@ -101,7 +101,7 @@ class GMM:
         result = (fx / self.cst - self.bots) / (self.tops - self.bots)
         # import pdb; pdb.set_trace()
         if self.random:
-            result = result + tf.random_normal(shape=[self.batch_size, 1], 
+            result = result + tf.random_normal(shape=[self.batch_size, 1],
                     stddev=self.random,
                     dtype=self.dtype, name='error')
         return result
@@ -113,12 +113,12 @@ class Quadratic:
     def __init__(self, batch_size=128, num_dims=3, ptype='convex',
                  random=0.05, dtype=tf.float32):
         self.ptype = ptype
-        self.w = tf.get_variable('w', shape=[batch_size, num_dims, num_dims],
+        self.w = tf.compat.v1.get_variable('w', shape=[batch_size, num_dims, num_dims],
             dtype=dtype, initializer=tf.random_normal_initializer(),
             trainable=False)
 
-        self.a = tf.get_variable('y', shape=[batch_size, num_dims],
-            dtype=dtype, initializer=tf.truncated_normal_initializer(mean=0.5, stddev=0.2),
+        self.a = tf.compat.v1.get_variable('y', shape=[batch_size, num_dims],
+            dtype=dtype, initializer=tf.compat.v1.truncated_normal_initializer(mean=0.5, stddev=0.2),
             trainable=False)
 
         self.y = tf.squeeze(tf.matmul(self.w, tf.expand_dims(self.a, -1)))
@@ -195,7 +195,7 @@ class QuadraticEval:
         if self.record:
             self.history['x'].append(x)
             self.history['y'].append(res)
-        return res 
+        return res
 
 class ConstraintQuadraticEval:
     def __init__(self, num_dim=3, random=0.5, ptype='convex',
@@ -233,7 +233,7 @@ class ConstraintQuadraticEval:
             res = 1 - res
         print('Output:')
         print(res)
-        return res 
+        return res
 
 
 class RealReaction:
@@ -263,5 +263,3 @@ class RealReaction:
             print('{0}: {1:.3f}'.format(self.param_names[i], real_x[i]))
         result = float(input('Input the reaction yield:'))
         return self.y_convert(result)
-
-    
