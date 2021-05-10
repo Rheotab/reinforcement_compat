@@ -1,1 +1,36 @@
-2021-05-10 16:30:52,438 [WARNING] `tf.nn.rnn_cell.MultiRNNCell` is deprecated. This class is equivalent as `tf.keras.layers.StackedRNNCells`, and will be replaced by that in Tensorflow 2.0.
+
+2021-05-10 10:20:09,806 [INFO] {'log_path': './log/', 'save_path': './ckpt/8_dim_quad/h128_s50_srnn/', 'batch_size': 128, 'hidden_size': 128, 'num_layers': 2, 'batch_norm': False, 'reuse': False, 'num_epochs': 50000, 'log_period': 100, 'evaluation_period': 1000, 'evaluation_epochs': 20, 'reaction_type': 'quad', 'norm_cov': 0.3, 'constraints': False, 'num_params': 3, 'instrument_error': None, 'num_steps': 50, 'unroll_length': 50, 'learning_rate': 0.001, 'optimizer': 'Adam', 'loss_type': 'oi', 'discount_factor': 0.97, 'opt_direction': 'min', 'policy': 'srnn', 'trainable_init': True}
+2021-05-10 10:20:09,821 [WARNING] `tf.nn.rnn_cell.MultiRNNCell` is deprecated. This class is equivalent as `tf.keras.layers.StackedRNNCells`, and will be replaced by that in Tensorflow 2.0.
+2021-05-10 10:20:09,847 [WARNING] From /Users/theorabut/miniforge3/envs/env-tf/lib/python3.8/site-packages/tensorflow/python/ops/linalg/linear_operator_lower_triangular.py:159: calling LinearOperator.__init__ (from tensorflow.python.ops.linalg.linear_operator) with graph_parents is deprecated and will be removed in a future version.
+Instructions for updating:
+Do not pass `graph_parents`.  They will  no longer be used.
+2021-05-10 10:20:09,849 [WARNING] From /Users/theorabut/miniforge3/envs/env-tf/lib/python3.8/site-packages/tensorflow_probability/python/bijectors/affine_linear_operator.py:116: LinearOperator.graph_parents (from tensorflow.python.ops.linalg.linear_operator) is deprecated and will be removed in a future version.
+Instructions for updating:
+Do not call `graph_parents`.
+2021-05-10 10:20:10,164 [INFO] model variable:
+2021-05-10 10:20:10,165 [INFO] ['w:0', 'y:0', 'x:0', 'lstm_0/w_gates:0', 'lstm_0/b_gates:0', 'lstm_1/w_gates:0', 'lstm_1/b_gates:0', 'multi_input_rnn/proj/proj_weight:0', 'multi_input_rnn/proj/proj_bias:0', 'beta1_power:0', 'beta2_power:0', 'x/Adam:0', 'x/Adam_1:0', 'lstm_0/w_gates/Adam:0', 'lstm_0/w_gates/Adam_1:0', 'lstm_0/b_gates/Adam:0', 'lstm_0/b_gates/Adam_1:0', 'lstm_1/w_gates/Adam:0', 'lstm_1/w_gates/Adam_1:0', 'lstm_1/b_gates/Adam:0', 'lstm_1/b_gates/Adam_1:0', 'multi_input_rnn/proj/proj_weight/Adam:0', 'multi_input_rnn/proj/proj_weight/Adam_1:0', 'multi_input_rnn/proj/proj_bias/Adam:0', 'multi_input_rnn/proj/proj_bias/Adam_1:0']
+2021-05-10 10:20:10,165 [INFO] trainable variables:
+2021-05-10 10:20:10,165 [INFO] ['x:0', 'lstm_0/w_gates:0', 'lstm_0/b_gates:0', 'lstm_1/w_gates:0', 'lstm_1/b_gates:0', 'multi_input_rnn/proj/proj_weight:0', 'multi_input_rnn/proj/proj_bias:0']
+2021-05-10 10:20:10,165 [INFO] Creating Model with fresh parameters.
+2021-05-10 16:22:12,309 [WARNING] `tf.nn.rnn_cell.MultiRNNCell` is deprecated. This class is equivalent as `tf.keras.layers.StackedRNNCells`, and will be replaced by that in Tensorflow 2.0.
+2021-05-10 16:37:55,574 [WARNING] `tf.nn.rnn_cell.MultiRNNCell` is deprecated. This class is equivalent as `tf.keras.layers.StackedRNNCells`, and will be replaced by that in Tensorflow 2.0.
+2021-05-10 16:37:55,595 [WARNING] From /Users/theorabut/miniforge3/envs/env-py3.8/lib/python3.8/site-packages/tensorflow/python/ops/linalg/linear_operator_lower_triangular.py:159: calling LinearOperator.__init__ (from tensorflow.python.ops.linalg.linear_operator) with graph_parents is deprecated and will be removed in a future version.
+Instructions for updating:
+Do not pass `graph_parents`.  They will  no longer be used.
+2021-05-10 16:37:55,596 [WARNING] From /Users/theorabut/miniforge3/envs/env-py3.8/lib/python3.8/site-packages/tensorflow_probability/python/bijectors/affine_linear_operator.py:116: LinearOperator.graph_parents (from tensorflow.python.ops.linalg.linear_operator) is deprecated and will be removed in a future version.
+Instructions for updating:
+Do not call `graph_parents`.
+2021-05-10 16:38:12,914 [WARNING] `tf.nn.rnn_cell.MultiRNNCell` is deprecated. This class is equivalent as `tf.keras.layers.StackedRNNCells`, and will be replaced by that in Tensorflow 2.0.
+2021-05-10 16:38:12,932 [WARNING] From /Users/theorabut/miniforge3/envs/env-py3.8/lib/python3.8/site-packages/tensorflow/python/ops/linalg/linear_operator_lower_triangular.py:159: calling LinearOperator.__init__ (from tensorflow.python.ops.linalg.linear_operator) with graph_parents is deprecated and will be removed in a future version.
+Instructions for updating:
+Do not pass `graph_parents`.  They will  no longer be used.
+2021-05-10 16:38:12,933 [WARNING] From /Users/theorabut/miniforge3/envs/env-py3.8/lib/python3.8/site-packages/tensorflow_probability/python/bijectors/affine_linear_operator.py:116: LinearOperator.graph_parents (from tensorflow.python.ops.linalg.linear_operator) is deprecated and will be removed in a future version.
+Instructions for updating:
+Do not call `graph_parents`.
+2021-05-10 16:38:28,809 [WARNING] `tf.nn.rnn_cell.MultiRNNCell` is deprecated. This class is equivalent as `tf.keras.layers.StackedRNNCells`, and will be replaced by that in Tensorflow 2.0.
+2021-05-10 16:38:28,827 [WARNING] From /Users/theorabut/miniforge3/envs/env-py3.8/lib/python3.8/site-packages/tensorflow/python/ops/linalg/linear_operator_lower_triangular.py:159: calling LinearOperator.__init__ (from tensorflow.python.ops.linalg.linear_operator) with graph_parents is deprecated and will be removed in a future version.
+Instructions for updating:
+Do not pass `graph_parents`.  They will  no longer be used.
+2021-05-10 16:38:28,828 [WARNING] From /Users/theorabut/miniforge3/envs/env-py3.8/lib/python3.8/site-packages/tensorflow_probability/python/bijectors/affine_linear_operator.py:116: LinearOperator.graph_parents (from tensorflow.python.ops.linalg.linear_operator) is deprecated and will be removed in a future version.
+Instructions for updating:
+Do not call `graph_parents`.
