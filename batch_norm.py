@@ -2,7 +2,7 @@ import tensorflow as tf
 
 import base
 
-from tensorflow.contrib.layers.python.layers import utils
+# from tensorflow.contrib.layers.python.layers import utils
 
 class BatchNorm():
     GAMMA = "gamma"
@@ -71,7 +71,7 @@ class BatchNorm():
                 tf.identity(self._moving_mean),
                 tf.identity(self._moving_variance),)
 
-        mean, variance = utils.smart_cond(
+        mean, variance = tf.cond(
             use_batch_stats,
             build_batch_stats,
             build_moving_stats,
@@ -126,7 +126,7 @@ class BatchNorm():
                 tf.identity(self._moving_second_moment),
             )
 
-        mean, variance, second_moment = utils.smart_cond(
+        mean, variance, second_moment = tf.cond(
             use_batch_stats,
             build_batch_stats,
             build_moving_stats,
@@ -155,13 +155,20 @@ class BatchNorm():
 
             # Only make the ops if we know that `is_training=True`, or the
             # value of `is_training` is unknown.
-        is_training_const = utils.constant_value(is_training)
+        # is_training_const = utils.constant_value(is_training)
+        is_training_const = tf.compat.v1.ragged.constant_value(is_training)
         if is_training_const is None or is_training_const:
-            update_mean_op, update_variance_op = utils.smart_cond(
+            update_mean_op, update_variance_op = tf.cond(
                 is_training,
                 build_update_ops,
                 build_no_ops,
             )
+
+            #update_mean_op, update_variance_op = utils.smart_cond(
+            #    is_training,
+            #    build_update_ops,
+            #    build_no_ops,
+            #)
 
           # Every new connection creates a new op which adds its contribution
           # to the running average when ran.
@@ -187,13 +194,21 @@ class BatchNorm():
         def build_no_ops():
             return (tf.no_op(), tf.no_op())
 
-        is_training_const = utils.constant_value(is_training)
+        # is_training_const = utils.constant_value(is_training)
+        is_training_const = tf.compat.v1.ragged.constant_value(is_training)
         if is_training_const is None or is_training_const:
-            update_mean_op, update_second_moment_op = utils.smart_cond(
+
+            update_mean_op, update_second_moment_op = tf.cond(
                 is_training,
                 build_update_ops,
                 build_no_ops,
                 )
+
+            #update_mean_op, update_second_moment_op = utils.smart_cond(
+            #    is_training,
+            #    build_update_ops,
+            #    build_no_ops,
+            #    )
 
         tf.add_to_collection(tf.GraphKeys.UPDATE_OPS, update_mean_op)
         tf.add_to_collection(tf.GraphKeys.UPDATE_OPS, update_second_moment_op)

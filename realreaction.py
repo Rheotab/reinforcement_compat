@@ -25,7 +25,7 @@ class StepOptimizer:
         self.init_state = self.cell.get_initial_state(1, tf.float32)
         self.results = self.build_graph()
 
-        self.saver = tf.train.Saver(tf.global_variables())
+        self.saver = tf.compat.v1.train.Saver(tf.global_variables())
 
     def get_state_shapes(self):
         return [(s[0].get_shape().as_list(), s[1].get_shape().as_list())
@@ -40,14 +40,14 @@ class StepOptimizer:
         return new_x, new_state
 
     def build_graph(self):
-        x = tf.placeholder(tf.float32, shape=[1, self.ndim], name='input_x')
-        y = tf.placeholder(tf.float32, shape=[1, 1], name='input_y')
+        x = tf.compat.v1.placeholder(tf.float32, shape=[1, self.ndim], name='input_x')
+        y = tf.compat.v1.placeholder(tf.float32, shape=[1, 1], name='input_y')
         state = []
         for i in range(len(self.init_state)):
-            state.append((tf.placeholder(
+            state.append((tf.compat.v1.placeholder(
                               tf.float32, shape=self.init_state[i][0].get_shape(),
                               name='state_l{0}_c'.format(i)),
-                          tf.placeholder(
+                          tf.compat.v1.placeholder(
                               tf.float32, shape=self.init_state[i][1].get_shape(),
                               name='state_l{0}_h'.format(i))))
 
@@ -58,7 +58,7 @@ class StepOptimizer:
         return new_x, new_state
 
     def load(self, sess, ckpt_path):
-        ckpt = tf.train.get_checkpoint_state(ckpt_path)
+        ckpt = tf.compat.v1.train.get_checkpoint_state(ckpt_path)
         if ckpt and ckpt.model_checkpoint_path:
             logger.info('Reading model parameters from {}.'.format(
                 ckpt.model_checkpoint_path))
@@ -110,10 +110,10 @@ def main():
                               constraints=config.constraints)
     x_array, y_array = optimizer.run()
 
-    
+
     # plt.figure(1)
     # plt.plot(y_array)
     # plt.show()
-    
+
 if __name__ == '__main__':
     main()
