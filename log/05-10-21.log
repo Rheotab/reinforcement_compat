@@ -1,0 +1,1 @@
+2021-05-10 16:30:52,438 [WARNING] `tf.nn.rnn_cell.MultiRNNCell` is deprecated. This class is equivalent as `tf.keras.layers.StackedRNNCells`, and will be replaced by that in Tensorflow 2.0.
